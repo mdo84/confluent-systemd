@@ -1,0 +1,14 @@
+[Unit]
+Description=Schema Registry for Kafka
+After=network.target
+
+[Service]
+Type=forking
+User=root
+Group=root
+Environment="LOG_DIR=/var/log/schema-registry"
+ExecStart=/usr/bin/schema-registry-start -daemon /etc/schema-registry/schema-registry.properties
+ExecStop=/usr/bin/schema-registry-stop
+
+[Install]
+WantedBy=multi-user.target
